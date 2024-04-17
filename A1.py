@@ -43,21 +43,26 @@ def decode_message(in_str):
         new_abcd_list = abcd_list
         
     str = ""    # Turn new_abcd_list to arrow
+    final_abcd_list = []
     for i in new_abcd_list:
         if i % 360 == 0:
             str = str + "↑" # 0 presents "↑"
+            final_abcd_list.append(i % 360)
         elif i % 360 == 180:
             str = str + "↓" # 180 presents "↓"
+            final_abcd_list.append(i % 360)
         elif i % 360 == 90:
             str = str + "→" # 90 presents "→"
+            final_abcd_list.append(i % 360)
         elif i % 360 == 270:
             str = str + "←" #270 presents "←"
+            final_abcd_list.append(i % 360)
     print(f"Instructions: {str}")
     
-    a = new_abcd_list.count(0)
-    b = new_abcd_list.count(180)
-    c = new_abcd_list.count(270)
-    d = new_abcd_list.count(90)
+    a = final_abcd_list.count(0)
+    b = final_abcd_list.count(180)
+    c = final_abcd_list.count(270)
+    d = final_abcd_list.count(90)
     
     concise = [c-d, a-b]    # Concise the arrow: c-d concises "←" and "→"; a-b concises "↑" and "↓"
     result = ""
