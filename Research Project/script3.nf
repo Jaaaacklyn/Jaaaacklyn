@@ -3,6 +3,8 @@ params.transcriptome_file = "$projectDir/data/ggal/transcriptome.fa"
 params.multiqc = "$projectDir/multiqc"
 params.outdir = "results"
 
+println "reads: $params.reads"
+
 log.info """\
     R N A S E Q - N F   P I P E L I N E
     ===================================
@@ -11,8 +13,28 @@ log.info """\
     outdir       : ${params.outdir}
     """
     .stripIndent(true)
+
+process INDEX {
+    cpus 2
     
+    input:
+    path transcriptome
+
+    output:
+    path 'salmon_index'
+
+    script:
+    """
+    salmon index --threads $task.cpus -t $transcriptome -i salmon_index
+    """
+}
+workflow {
+    index_ch = INDEX(params.transcriptome_file)
+    index_ch.view()
+
 Channel
     .fromFilePairs(params.reads, checkIfExists: true)
     .set { read_pairs_ch }
+
 read_pairs_ch.view()
+}

@@ -1,23 +1,16 @@
-
-
 process fastqc {
-    publishDir './results', mode: 'copy'   
+    tag "FASTQC on $sample_id"
 
     input:
-    path fastq_file
+    set sample_id, file(reads) from read_pairs2_ch
 
     output:
-    path "results/*_fastqc.html"
-    path "results/*_fastqc.zip"
+    file("fastqc_${sample_id}_logs") into fastqc_ch
+
 
     script:
     """
-    fastqc -o results $fastq_file
-    """
-}
-
-// 定義流程的執行部分
-workflow {
-    fastq_files = Channel.fromFilePairs('/punim2383/fastq_data/ribo_minus/AGRF_CAGRF24030355_22KTLNLT3/*.fastq.gz')
-    fastqc(fastq_files)
-}
+    mkdir fastqc_${sample_id}_logs
+    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
+    """  
+}  

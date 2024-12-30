@@ -46,12 +46,49 @@ process QUANTIFICATION {
     """
 
 }
+
+process FASTQC {
+    tag "FASTQC on $sample_id"
+
+    input:
+    set sample_id, file(reads) from read_pairs2_ch
+
+    output:
+    file("fastqc_${sample_id}_logs") into fastqc_ch
+
+
+    script:
+    """
+    mkdir fastqc_${sample_id}_logs
+    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
+    """  
+}  
+
+process MULTIQC {
+    publishDir params.outdir, mode:'copy'
+       
+    input:
+    file('*') from quant_ch.mix(fastqc_ch).collect()
+    file(config) from multiqc_file
+    
+    output:
+    file('multiqc_report.html')  
+     
+    script:
+    """
+    cp $config/* .
+    echo "custom_logo: \$PWD/logo.png" >> multiqc_config.yaml
+    multiqc . 
+    """
+}
+
 workflow {
     Channel
         .fromFilePairs(params.reads, checkIfExists: true)
         .set { read_pairs_ch }
 
     index_ch = INDEX(params.transcriptome_file)
-    quant-ch = QUANTIFICATION(index_ch, read_pairs_ch)
-
+    quant_ch = QUANTIFICATION(index_ch, read_pairs_ch)
+    fastqc_ch = FASTQC(read_pairs_ch)
+    MULTIQC(quant_ch.mix(fastqc_ch))
 }
