@@ -1,5 +1,5 @@
-params.reads = "$projectDir/data/ggal/gut_{1,2}.fq"
-params.transcriptome_file = "$projectDir/data/ggal/transcriptome.fa"
+params.reads = "$projectDir/data/gpfs/projects/punim2383/"
+params.transcriptome_file = "$projectDir/data/gpfs/projects/punim2383/"
 params.multiqc = "$projectDir/multiqc"
 params.outdir = "results"
 
@@ -42,20 +42,18 @@ process QUANTIFICATION {
 
     script:
     """
-    salmon quant --threads $task.cpus --libType=U -i $salmomn_index -1 ${reads[0]} -2 ${reads[1]} -o $sample_id
+    salmon quant --threads $task.cpus --libType=U -i $salmon_index -1 ${reads[0]} -2 ${reads[1]} -o $sample_id
     """
-
 }
 
 process FASTQC {
     tag "FASTQC on $sample_id"
 
     input:
-    set sample_id, file(reads) from read_pairs2_ch
+    set sample_id, file(reads) from read_pairs_ch
 
     output:
     file("fastqc_${sample_id}_logs") into fastqc_ch
-
 
     script:
     """
