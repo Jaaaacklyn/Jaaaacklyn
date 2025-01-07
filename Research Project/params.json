@@ -1,0 +1,8 @@
+{
+    "input": "/home/chipeng/polya_samplesheet.csv",
+    "outdir": "/home/chipeng/punim2383",
+    "genome": "GRCh38",
+    "gtf": "/home/chipeng/Homo_sapiens.GRCh38.113.gtf.gz",
+    "fasta": "/home/chipeng/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz"
+  }
+  
