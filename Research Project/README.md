@@ -7,7 +7,7 @@ Quantifying the Differences Between Poly-A Selection and Ribo-Depletion in RNA-S
 •	Objective: Introduce the primary goal of the study, which is to conduct a detailed RNA-Seq analysis comparing these two RNA enrichment methods, with a particular focus on clinical samples.
 
 nextflow run \nf-core/rnaseq \
-    --input <polya_samplesheet.csv> \
+    --input <test.csv> \
     --outdir <OUTDIR> \
     --gtf <Homo_sapiens.GRCh38.113.gtf.gz> \
     --fasta <Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz> \
