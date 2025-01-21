@@ -1,1 +1,2 @@
-URS007, auto,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R1.fastq.gz, /data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R2.fastq.gz
+sample,fastq_1,fastq_2,strandedness
+URS007,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R1.fastq.gz, /data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R2.fastq.gz, auto
