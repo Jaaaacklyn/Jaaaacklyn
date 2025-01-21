@@ -1,6 +1,6 @@
 {
     "input": "/data/gpfs/projects/punim2383/test.csv",
-    "outdir": "/data/gpfs/projects/punim2383",
+    "outdir": "/data/gpfs/projects/punim2383/result",
     "genome": "GRCh38",
     "gtf": "/data/gpfs/projects/punim2383/Homo_sapiens.GRCh38.113.gtf.gz",
     "fasta": "/data/gpfs/projects/punim2383/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz"
