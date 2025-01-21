@@ -13,5 +13,3 @@ nextflow run \nf-core/rnaseq \
     
 nextflow run nf-core/rnaseq -profile docker -params-file params.json
 nextflow run nf-core/rnaseq -profile apptainer -params-file params.json
-
-
