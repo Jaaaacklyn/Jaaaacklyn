@@ -6,7 +6,7 @@ Quantifying the Differences Between Poly-A Selection and Ribo-Depletion in RNA-S
 
 nextflow run \nf-core/rnaseq \
     --input <test.csv> \
-    --outdir <OUTDIR> \
+    --outdir <result> \
     --gtf <Homo_sapiens.GRCh38.113.gtf.gz> \
     --fasta <Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz> \
     -profile docker
