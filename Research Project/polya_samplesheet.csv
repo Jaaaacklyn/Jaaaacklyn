@@ -1,7 +1,6 @@
 sample,fastq_1,fastq_2,strandedness
-URS007,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R2.fastq.gz, auto
+URS007,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS007_HLJWKDSX7_CGCTGTCTCA-GGTGAGTAAT_L004_R2.fastq.gz,reversed
 URS008,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS008_HLJWKDSX7_AATGCGAACA-TCCGCCAATT_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS008_HLJWKDSX7_AATGCGAACA-TCCGCCAATT_L004_R2.fastq.gz, auto
 URS009,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS009_HLJWKDSX7_AATTCTTGGA-AAGTTGACAA_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS009_HLJWKDSX7_AATTCTTGGA-AAGTTGACAA_L004_R2.fastq.gz, auto
-URS0010,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS010_HLJWKDSX7_TTCCTACAGC-AGAATTCGCC_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS010_HLJWKDSX7_TTCCTACAGC-AGAATTCGCC_L004_R2.fastq.gz, auto
+URS0010,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS010_HLJWKDSX7_TTCCTACAGC-AGAATTCGCC_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS010_HLJWKDSX7_TTCCTACAGC-AGAATTCGCC_L004_R2.fastloto
 URS0011,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS011_HLJWKDSX7_ATCCAGGTAT-GCTGACGTTG_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS011_HLJWKDSX7_ATCCAGGTAT-GCTGACGTTG_L004_R2.fastq.gz, auto
-URS0013,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS013_HLJWKDSX7_ACGGTCCAAC-TGATGTAAGA_L004_R1.fastq.gz,/data/gpfs/projects/punim2383/fastq_data/poly_a/URS013_HLJWKDSX7_ACGGTCCAAC-TGATGTAAGA_L004_R2.fastq.gz, auto

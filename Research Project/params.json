@@ -1,6 +1,6 @@
 {
-  "input": "/data/gpfs/projects/punim2383/test.csv",
-  "outdir": "/data/gpfs/projects/punim2383/result",
+  "input": "/data/gpfs/projects/punim2383/polya_samplesheet.csv",
+  "outdir": "/data/gpfs/projects/punim2383/polya_result",
   "genome": "GRCh38",
   "gtf": "/data/gpfs/projects/punim2383/Homo_sapiens.GRCh38.113.cleaned.gtf",
   "fasta": "/data/gpfs/projects/punim2383/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa",
