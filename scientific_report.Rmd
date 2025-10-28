@@ -1,0 +1,131 @@
+---
+title: "alternative_datasets_1"
+author: "Ching-Yi Peng"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: true
+    extra_dependencies: ["minted"]
+    pandoc_args: ["--pdf-engine-opt=--shell-escape"]
+    includes:
+      in_header: header.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setup
+
+```{r}
+# Alternative datasets for student report
+library(Seurat)
+options(Seurat.object.assay.version = "v5")
+library(SeuratData)
+
+if(F){
+  AvailableData()
+  InstallData("pbmcsca")
+}
+data("pbmcsca")
+pbmcsca <- UpdateSeuratObject(pbmcsca)
+table(pbmcsca$Method)
+```
+
+# 1. Subset Data by Platform
+
+```{r}
+method_names <- unique(pbmcsca$Method)
+platform_list <- list()
+for (m in method_names) {
+  sub_obj <- pbmcsca[, pbmcsca$Method == m]
+  if (ncol(sub_obj) > 500) {
+    platform_list[[m]] <- sub_obj
+  }
+}
+
+```
+
+# 2. Initialize result storage
+
+```{r}
+results <- data.frame(
+  Platform = character(),
+  RareCluster = character(),
+  TopMarker = character(),
+  DetectionRate = numeric(),
+  RareClusterCells = integer(),
+  stringsAsFactors = FALSE
+)
+```
+
+# 3. Rare cell marker
+
+```{r}
+marker_gene_list <- c("FOXP3", "LILRA4", "CD34", "GNLY", "PPBP")
+```
+
+
+# 4. Standard Preprocessing/Clustering
+
+```{r}
+for (plat_name in names(platform_list)) {
+  cat("Processing:", plat_name, "\n")
+  seurat_obj <- platform_list[[plat_name]]
+  
+  # Preprocess
+  seurat_obj <- NormalizeData(seurat_obj)
+  seurat_obj <- FindVariableFeatures(seurat_obj)
+  seurat_obj <- ScaleData(seurat_obj)
+  seurat_obj <- RunPCA(seurat_obj)
+  seurat_obj <- FindNeighbors(seurat_obj, dims=1:10)
+  seurat_obj <- FindClusters(seurat_obj, resolution=0.6)
+  seurat_obj <- RunUMAP(seurat_obj, dims=1:10)
+  
+  # Count cells per cluster
+  cluster_counts <- table(seurat_obj$seurat_clusters)
+  print(cluster_counts)
+  total_cells <- length(seurat_obj$seurat_clusters)
+  
+  # Define rare clusters (<1% total cells)
+  cluster_pct <- prop.table(cluster_counts)
+  rare_clusters <- names(cluster_pct)[cluster_pct < 0.01]
+  rare_cells <- sum(cluster_counts[rare_clusters])
+  
+  # Marker detection rate (proportion of cells expressing marker >0)
+  for (marker_gene in marker_gene_list) {
+    marker_expr <- FetchData(seurat_obj, vars = marker_gene)[, 1]
+    detection_rate <- sum(marker_expr > 0) / length(marker_expr)
+  }
+  
+  # Store results
+  results <- rbind(results, data.frame(
+    Platform=plat_name,
+    TotalCells=total_cells,
+    RareClusterCells=rare_cells,
+    MarkerDetectionRate=detection_rate
+  ))
+}
+
+print(results)
+write.csv(results, file = 'results.csv', row.names = FALSE)
+```
+
+# 5. Visualize with barplot
+
+```{r}
+barplot(results$MarkerDetectionRate, 
+        names.arg=results$Platform, 
+        main="Marker Detection Rate Across Platforms", 
+        ylab="Detection Rate",
+        las = 2,
+        cex.names = 0.5)
+
+barplot(results$RareClusterCells, 
+        names.arg=results$Platform, 
+        main="Rare Cluster Cell Counts Across Platforms", 
+        ylab="Cell Count",
+        las = 2,
+        cex.names = 0.5)
+```
