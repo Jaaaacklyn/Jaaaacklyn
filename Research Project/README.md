@@ -1,17 +1,31 @@
-Quantifying the Differences Between Poly-A Selection and Ribo-Depletion in RNA-Seq
+# [MSc Research Project: RNA-Seq Analysis Pipeline](https://jaaaacklyn.github.io/Jaaaacklyn/)
 
-•	Overview of RNA-Seq and RNA Enrichment: Provide a brief discussion on RNA sequencing and the importance of RNA enrichment, particularly the necessity of rRNA depletion.
-•	Research Gap: Highlight the lack of comprehensive, quantitative comparisons between Poly-A selection and Ribo-Depletion, with an emphasis on their impact on RNA-Seq data quality and downstream analyses.
-•	Objective: Introduce the primary goal of the study, which is to conduct a detailed RNA-Seq analysis comparing these two RNA enrichment methods, with a particular focus on clinical samples.
+This project quantifies the differences between **Poly-A Selection** and **Ribo-Depletion** enrichment methods in RNA-Seq workflows.
 
-nextflow run \nf-core/rnaseq \
-    --input <test.csv> \
-    --outdir <result> \
-    --gtf <Homo_sapiens.GRCh38.113.gtf.gz> \
-    --fasta <Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz> \
-    -profile docker
-    
-nextflow run nf-core/rnaseq -profile docker -params-file params.json
-nextflow run nf-core/rnaseq -profile apptainer -params-file params.json
-nextflow run nf-core/rnaseq -profile apptainer -params-file params.json -resume
+### 🔬 Research Overview
+*   **Objective**: To conduct a comparative analysis of RNA enrichment methods, focusing on their impact on data quality and downstream differential expression, particularly in clinical samples.
+*   **Interactive Report**: [**View the Full Analysis Report & Visualizations**](https://jaaaacklyn.github.io/Jaaaacklyn/) (Hosted via GitHub Pages).
 
+### 📁 Repository Structure
+This project is organized to support reproducibility and clear data provenance:
+*   `src/`: Core Nextflow pipeline scripts (e.g., `main.nf`, `fastqc.nf`).
+*   `analysis/`: RMarkdown files for statistical modeling and thesis-specific analysis (`thesis_analysis.Rmd`).
+*   `config/`: Configuration profiles and parameter files (`nextflow.config`, `params.json`).
+*   `docs/`: Static HTML assets for the web-based research report.
+
+### 🚀 Usage
+The pipeline is built leveraging the **nf-core/rnaseq** framework.
+
+**Basic Execution:**
+```bash
+nextflow run nf-core/rnaseq \
+  --input <test.csv> \
+  --outdir <output_directory> \
+  --gtf <Homo_sapiens.GRCh38.113.gtf.gz> \
+  --fasta <Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz> \
+  -profile docker
+
+### 🚀 How to Run
+To reproduce the analysis using the local configuration, run the following command:
+```bash
+nextflow run nf-core/rnaseq -profile docker -params-file config/params.json -resume
