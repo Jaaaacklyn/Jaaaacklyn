@@ -8,9 +8,15 @@ Bridging wet-lab biology with computational scale. 5+ years of experience integr
 
 ### 🧬 About Me
 
-* 🔬 **Background:** Wet-lab techniques meets computational genomics & bioinformatics.
+* 🔬 **Background:** Wet-lab techniques meet computational genomics & bioinformatics.
 * 🛠️ **Core Focus:** Building RNA-seq & genomic workflows, clinical data analysis, and pipeline optimization.
 * 💻 **Tech Stack:** `Python` | `R` | `Linux` | `Bash` | `SQL`
+
+---
+
+### 🔬 Current Research Projects
+
+* 🧬 **[Research Project](https://github.com/Jaaaacklyn/Jaaaacklyn/tree/main/Research%20Project)** — Active research focused on computational biology workflows and clinical data integration.
 
 ---
 
